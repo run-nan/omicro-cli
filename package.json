@@ -1,0 +1,35 @@
+{
+  "name": "omicro-cli",
+  "version": "1.0.0",
+  "description": "a command line interface tool to create and deploy a front-end micro-service",
+  "main": "index.js",
+  "bin": {
+    "omicro": "./bin/index.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SMIELPF/omicro-cli.git"
+  },
+  "keywords": [
+    "micro",
+    "front-end"
+  ],
+  "author": "philip Lau",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/SMIELPF/omicro-cli/issues"
+  },
+  "homepage": "https://github.com/SMIELPF/omicro-cli#readme",
+  "devDependencies": {
+    "eslint": "^6.8.0",
+    "eslint-config-google": "^0.14.0"
+  },
+  "dependencies": {
+    "chalk": "^3.0.0",
+    "commander": "^4.1.0",
+    "inquirer": "^7.0.3"
+  }
+}
