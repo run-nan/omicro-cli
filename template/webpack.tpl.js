@@ -5,7 +5,6 @@ module.exports = (name, isReactService) => {
 const os = require('os');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const HappyPack = require('happypack');
 
 const NODE_MODULES_PATH = path.resolve(__dirname, './node_modules');
 
@@ -19,19 +18,19 @@ const config = (env = {}, argv) => {
     const plugins = [];
 
     const entry = {
-        '${name}': path.resolve( __dirname, './src/index.${isReactService ? 'tsx' : 'ts'}')
+        'bundle': path.resolve( __dirname, './src/index.${isReactService ? 'tsx' : 'ts'}')
     };
 
     if (isEnvProduction) {
         const cssPlugin = new MiniCssExtractPlugin({
             filename: 'assets/${name}/css/[name]' + hash + '.css',
-        chunkFilename: 'assets/css/[name]Chunk.[id].css'
+            chunkFilename: 'assets/${name}/css/[name]Chunk.[id].css'
         });
         plugins.push(cssPlugin);
     } else {
-        entry.mock = path.resolve( __dirname, './src/mock/platform-service.ts'); 
+        entry.mock = path.resolve( __dirname, './mock/platform-service.ts'); 
         const htmlPlugin = new HtmlWebpackPlugin({
-            template: path.resolve(__dirname, './public/index.html'),
+            template: path.resolve(__dirname, './mock/index.html'),
             chunks: ['mock']
         });
         plugins.push(htmlPlugin);
@@ -43,7 +42,7 @@ const config = (env = {}, argv) => {
         output: {
             path: path.resolve( __dirname, './release'),
             filename: 'js/[name].' + hash + '.js',
-            publicPath: '/assets/' + ${name} + '/js'
+            publicPath: '/assets/' + ${name}
         },
         devtool: 'source-map',
         resolve: {
