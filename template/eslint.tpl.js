@@ -42,8 +42,8 @@ const config = {
         }],
         'valid-jsdoc': [1, {
             'requireParamDescription': true,
-            'requireParamType': true,
-            'requireReturnType': true,
+            'requireParamType': false,
+            'requireReturnType': false,
             'requireReturnDescription': true
 
         }],
@@ -59,7 +59,8 @@ const config = {
     }
 };
 
-module.exports = (isReactService) => {
+module.exports = ({framework}) => {
+    const isReactService = framework === 'react';
     if (isReactService) {
         config.extends.push('plugin:react/recommended');
         config.plugins.push('react');
@@ -71,6 +72,6 @@ module.exports = (isReactService) => {
         });
     }
 
-    return JSON.stringify(config);
+    return JSON.stringify(config, null, 4);
 };
 

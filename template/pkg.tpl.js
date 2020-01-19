@@ -1,11 +1,10 @@
 const template = {
     name: '',
     version: '1.0.0',
-    main: './src/index.js',
     scripts: {
-        build: '',
-        start: '',
-        test: ''
+        start: 'webpack-dev-server',
+        build: 'webpack env.production',
+        test: 'jest'
     },
     devDependencies: {
     },
@@ -13,7 +12,7 @@ const template = {
     }
 };
 
-module.exports = (name) => {
+module.exports = ({name}) => {
     template.name = name;
-    return JSON.stringify(template);
+    return JSON.stringify(template, null, 4);
 };

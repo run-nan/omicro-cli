@@ -1,4 +1,5 @@
-module.exports = (name, isReactService) => {
+module.exports = ({name, framework}) => {
+    const isReactService = framework === 'react';
     /* eslint-disable */
     return (
 `const path = require('path');
@@ -28,7 +29,7 @@ const config = (env = {}, argv) => {
         });
         plugins.push(cssPlugin);
     } else {
-        entry.mock = path.resolve( __dirname, './mock/platform-service.ts'); 
+        entry.mock = path.resolve( __dirname, './mock/platform.ts'); 
         const htmlPlugin = new HtmlWebpackPlugin({
             template: path.resolve(__dirname, './mock/index.html'),
             chunks: ['mock']

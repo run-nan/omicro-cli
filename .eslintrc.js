@@ -29,7 +29,7 @@ module.exports = {
         }
     }],
     "valid-jsdoc": [1, {
-        "requireParamDescription": true,
+        "requireParamDescription": false,
         "requireParamType": true,
         "requireReturnType": true,
         "requireReturnDescription": true
@@ -40,6 +40,7 @@ module.exports = {
         "code": 100,
         "ignoreComments": true
 
-    }]
-  },
+    }],
+    "no-undef": 2
+  }
 };
