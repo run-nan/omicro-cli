@@ -3,7 +3,7 @@ const template = {
     version: '1.0.0',
     scripts: {
         start: 'webpack-dev-server',
-        build: 'webpack env.production',
+        build: 'webpack --env.production',
         test: 'jest'
     },
     devDependencies: {
