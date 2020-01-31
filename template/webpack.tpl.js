@@ -12,19 +12,18 @@ module.exports = (env = {}, argv) => {
     const isEnvProduction = env.production || false;
     const hash = isEnvProduction ? '[contentHash:8]' : '[hash:8]';
 
-    const plugins = [];
-
     const entry = {
         'bundle': path.resolve(__dirname, './src/index.${isReactService ? 'tsx' : 'ts'}')
     };
 
-    if (isEnvProduction) {
-        const cssPlugin = new MiniCssExtractPlugin({
-            filename: 'css/[name]' + hash + '.css',
+    const plugins = [
+        new MiniCssExtractPlugin({
+            filename: 'css/[name].' + hash + '.css',
             chunkFilename: 'css/[name]Chunk.[id].css'
-        });
-        plugins.push(cssPlugin);
-    } else {
+        })
+    ];
+
+    if (!isEnvProduction) {
         entry.mock = path.resolve( __dirname, './mock/platform.ts');
         const htmlPlugin = new HtmlWebpackPlugin({
             template: path.resolve(__dirname, './mock/index.html'),
@@ -57,6 +56,7 @@ module.exports = (env = {}, argv) => {
                     use: [
                         isEnvProduction ? {loader: MiniCssExtractPlugin.loader} : 'style-loader',
                         'css-loader',
+                        'postcss-loader',
                         'less-loader'
                     ]
                 },
@@ -72,6 +72,10 @@ module.exports = (env = {}, argv) => {
                 }
             ]
         },
+        ${isReactService ? `externals: {
+            'react': 'React',
+            'react-dom': 'ReactDOM'
+        },` : ''}
         plugins,
         devServer: {
             hot: true,

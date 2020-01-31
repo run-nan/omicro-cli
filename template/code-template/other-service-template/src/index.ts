@@ -1,4 +1,5 @@
 import {Socket} from '@runnan/obvious/lib/socket'; // eslint-disable-line
+import './index.less';
 
 type configType = {
     text: string

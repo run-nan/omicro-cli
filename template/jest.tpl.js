@@ -4,7 +4,8 @@ const config =
         '^.+\\.tsx?$': 'ts-jest'
     },
     moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node']
-};`;
+};
+`;
 
 module.exports = () => {
     return config;

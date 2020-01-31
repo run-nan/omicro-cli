@@ -28,7 +28,7 @@ bus.createSocket('platform', [], (socket: Socket) => {
         }
     };
     switchThemeButton.innerHTML = 'Switch theme';
-    document.body.appendChild(switchThemeButton);
+    document.getElementById('platform').appendChild(switchThemeButton);
 });
 
 bus.startApp('demo', {text: 'Hello Omicro'}).then(() => {
