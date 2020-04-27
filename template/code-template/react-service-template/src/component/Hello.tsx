@@ -1,13 +1,16 @@
 import React, {useEffect} from 'react';
+import {withSocket} from '@runnan/react-obvious';
 
 type Props = {
     text: string,
     theme: string
 }
 
-const Hello: React.FunctionComponent<Props> = (props) => {
+const HelloComponent: React.FunctionComponent<Props> = (props) => {
     const style = {
         fontSize: '5rem',
+        width: '50rem',
+        textAlign: 'center' as const,
         margin: '8rem auto',
         color: props.theme === 'white' ? 'black' : 'white'
     };
@@ -21,4 +24,6 @@ const Hello: React.FunctionComponent<Props> = (props) => {
     );
 };
 
-export default Hello;
+const HelloContainer = withSocket(['theme', 'text'])(HelloComponent);
+
+export default HelloContainer;

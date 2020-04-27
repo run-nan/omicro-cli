@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import {Manager} from '@runnan/react-obvious';
 import {Socket} from '@runnan/obvious/lib/socket'; // eslint-disable-line
-import Hello from './container/HelloContainer';
+import Hello from './component/Hello';
 
 type configType = {
     text: string
@@ -21,7 +21,7 @@ const main = () => {
 };
 
 // do not run createSocket directly in dev mode
-if (process.env.NODE_ENV !== 'development') {
+if (process.env.NODE_ENV === 'production') {
     main();
 }
 

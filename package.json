@@ -29,8 +29,11 @@
     "eslint-config-google": "^0.14.0"
   },
   "dependencies": {
+    "archiver": "^4.0.1",
     "chalk": "^3.0.0",
     "commander": "^4.1.0",
-    "inquirer": "^7.0.3"
+    "inquirer": "^7.0.3",
+    "request": "^2.88.2",
+    "request-promise": "^4.2.5"
   }
 }

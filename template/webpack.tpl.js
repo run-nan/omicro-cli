@@ -1,8 +1,8 @@
 module.exports = ({name, framework}) => {
     const isReactService = framework === 'react';
     /* eslint-disable */
-    return (
-`const path = require('path');
+    return (`\
+const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
@@ -13,7 +13,7 @@ module.exports = (env = {}, argv) => {
     const hash = isEnvProduction ? '[contentHash:8]' : '[hash:8]';
 
     const entry = {
-        'bundle': path.resolve(__dirname, './src/index.${isReactService ? 'tsx' : 'ts'}')
+        'main': path.resolve(__dirname, './src/index.${isReactService ? 'tsx' : 'ts'}')
     };
 
     const plugins = [
@@ -36,9 +36,9 @@ module.exports = (env = {}, argv) => {
         mode: isEnvProduction? 'production' : 'development',
         entry,
         output: {
-            path: path.resolve( __dirname, './release'),
+            path: path.resolve( __dirname, './dist'),
             filename: 'js/[name].' + hash + '.js',
-            publicPath: '/${name}/'
+            publicPath: '/feda/assets/${name}/'
         },
         devtool: 'source-map',
         resolve: {
@@ -82,7 +82,7 @@ module.exports = (env = {}, argv) => {
             inline: true,
             quiet: true,
             open: true,
-            openPage: '${name}/'
+            openPage: 'feda/assets/${name}/index.html'
         }
     };
 };
