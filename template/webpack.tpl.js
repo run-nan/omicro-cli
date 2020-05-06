@@ -1,5 +1,6 @@
-module.exports = ({name, framework}) => {
+module.exports = ({name, version, framework}) => {
     const isReactService = framework === 'react';
+    const appName = version ? `${name}@${version}` : name;
     /* eslint-disable */
     return (`\
 const path = require('path');
@@ -38,7 +39,7 @@ module.exports = (env = {}, argv) => {
         output: {
             path: path.resolve( __dirname, './dist'),
             filename: 'js/[name].' + hash + '.js',
-            publicPath: '/feda/assets/${name}/'
+            publicPath: '/feda/assets/${appName}/'
         },
         devtool: 'source-map',
         resolve: {
@@ -82,7 +83,7 @@ module.exports = (env = {}, argv) => {
             inline: true,
             quiet: true,
             open: true,
-            openPage: 'feda/assets/${name}/index.html'
+            openPage: 'feda/assets/${appName}/index.html'
         }
     };
 };

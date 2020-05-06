@@ -1,6 +1,6 @@
 const config =
 `node_modules
-release`
+dist`
 ;
 module.exports = () => {
     return config;

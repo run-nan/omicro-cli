@@ -1,6 +1,6 @@
 const template = {
     name: '',
-    version: '1.0.0',
+    version: '',
     scripts: {
         start: 'webpack-dev-server',
         build: 'webpack --env.production',
@@ -12,7 +12,8 @@ const template = {
     }
 };
 
-module.exports = ({name}) => {
+module.exports = ({name, version}) => {
     template.name = name;
+    template.version = version;
     return JSON.stringify(template, null, 4);
 };
