@@ -1,4 +1,4 @@
-import {createBus} from '@runnan/obvious';
+import {createBus, getBus} from '@runnan/obvious';
 import {Socket} from '@runnan/obvious/lib/socket'; // eslint-disable-line
 import './index.less';
 
@@ -14,7 +14,7 @@ createBus('global', null, async (name: string) => {
     };
 });
 
-const bus = window.Bus.global;
+const bus = getBus('global');
 
 bus.createSocket('platform', [], (socket: Socket) => {
     socket.initState('theme', 'white', true);

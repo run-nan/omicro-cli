@@ -29,6 +29,7 @@
     "eslint-config-google": "^0.14.0"
   },
   "dependencies": {
+    "@teamsupercell/typings-for-css-modules-loader": "^2.2.0",
     "archiver": "^4.0.1",
     "chalk": "^3.0.0",
     "commander": "^4.1.0",

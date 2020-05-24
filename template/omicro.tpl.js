@@ -1,7 +1,9 @@
 const config = {
     name: '',
-    proxy: {},
-    agent: 'http://127.0.0.1'
+    assets: {
+        css: [],
+        js: []
+    }
 };
 
 module.exports = ({name, version}) => {

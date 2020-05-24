@@ -14,7 +14,30 @@ module.exports = (env = {}, argv) => {
     const hash = isEnvProduction ? '[contentHash:8]' : '[hash:8]';
 
     const entry = {
-        'main': path.resolve(__dirname, './src/index.${isReactService ? 'tsx' : 'ts'}')
+        entry: path.resolve(__dirname, './src/index.${isReactService ? 'tsx' : 'ts'}')
+    };
+
+    const styleLoaders = (enableCssModule) => {
+        return [
+            isEnvProduction ? {loader: MiniCssExtractPlugin.loader} : 'style-loader',
+            {
+                loader: 'css-loader',
+                options: {
+                    modules: enableCssModule ? {
+                        localIdentName: '[name]-[local]-[hash:base64:5]'
+                    } : false
+                }
+            },
+            {
+                loader: 'postcss-loader',
+                options: {
+                    plugins: [
+                        require('autoprefixer')
+                    ]
+                }
+            },
+            'less-loader'
+        ];
     };
 
     const plugins = [
@@ -53,13 +76,14 @@ module.exports = (env = {}, argv) => {
                     use: ['awesome-typescript-loader', 'eslint-loader']
                 },
                 {
-                    test: /\.(css|less)$/,
-                    use: [
-                        isEnvProduction ? {loader: MiniCssExtractPlugin.loader} : 'style-loader',
-                        'css-loader',
-                        'postcss-loader',
-                        'less-loader'
-                    ]
+                    test: /.(css|less)$/,
+                    exclude: NODE_MODULES_PATH,
+                    use: styleLoaders(true)
+                },
+                {
+                    test: /.(css|less)$/,
+                    include: NODE_MODULES_PATH,
+                    use: styleLoaders(false)
                 },
                 {
                     test: /\.(png|jpg|gif|svg|eot|ttf|woff|woff2)$/,

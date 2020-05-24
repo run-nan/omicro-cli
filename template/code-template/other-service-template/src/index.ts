@@ -1,11 +1,12 @@
 import {Socket} from '@runnan/obvious/lib/socket'; // eslint-disable-line
+import {getBus} from '@runnan/obvious';
 import './index.less';
 
 type configType = {
     text: string
 };
 
-const bus = window.Bus.global;
+const bus = getBus('global');
 
 const main = () => {
     bus.createSocket('demo', ['theme'], (socket: Socket, config: configType)=> {

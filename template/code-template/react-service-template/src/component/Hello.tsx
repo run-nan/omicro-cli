@@ -1,26 +1,23 @@
 import React, {useEffect} from 'react';
 import {withSocket} from '@runnan/react-obvious';
+import styles from './Hello.less';
 
 type Props = {
     text: string,
     theme: string
 }
 
-const HelloComponent: React.FunctionComponent<Props> = (props) => {
+const HelloComponent: React.FunctionComponent<Props> = ({theme, text}) => {
     const style = {
-        fontSize: '5rem',
-        width: '50rem',
-        textAlign: 'center' as const,
-        margin: '8rem auto',
-        color: props.theme === 'white' ? 'black' : 'white'
+        color: theme === 'white' ? 'black' : 'white'
     };
 
     useEffect(() => {
-        document.body.style.backgroundColor = props.theme;
-    }, [props.theme]);
+        document.body.style.backgroundColor = theme;
+    }, [theme]);
 
     return (
-        <h1 style={style}>{props.text}</h1>
+        <h1 style={style} className={styles.hello}>{text}</h1>
     );
 };
 
